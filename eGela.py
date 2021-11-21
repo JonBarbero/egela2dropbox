@@ -212,6 +212,7 @@ class eGela:
                             deskribapena = erantzuna.reason
                             print(str(kodea) + " " + deskribapena)
                             pdf_link = pdf_uria.split("mod_resource/content/")[1].split("/")[1].replace("%20", "_")
+                            print(pdf_link)
                             pdf_izena = pdf_link.split('/')[-1]
                             self._refs.append({'link': pdf_uria, 'pdf_name': pdf_izena})
 
@@ -220,9 +221,29 @@ class eGela:
                             kodea = erantzuna.status_code
                             deskribapena = erantzuna.reason
                             print(str(kodea) + " " + deskribapena)
-                            pdf_link = pdf_uria.split("mod_resource/content/")[1].split("/")[1].replace("%20", "_")
-                            pdf_izena = pdf_link.split('/')[-1]
-                            self._refs.append({'link': pdf_uria, 'pdf_name': pdf_izena})
+                            edukia = erantzuna.content
+                            # print(edukia)
+                            status = erantzuna.status_code
+                            soup2 = BeautifulSoup(edukia, 'html.parser')
+                            div_pdf = soup2.find('div', {'class': 'resourceworkaround'})
+                            # print(div_pdf)
+                            if "href" in str(div_pdf):
+                                print(div_pdf)
+                                div2 = str(div_pdf)
+                                length = 5
+                                indice_1 = div2.find("href=""")
+                                indice_1 = indice_1 + length + 1
+                                print(indice_1)
+                                indice_2 = div2.index("onclick")
+                                indice_2 = indice_2 - 2
+                                print(indice_2)
+                                subcadena = div2[indice_1:indice_2]
+                                print(subcadena)
+                                pdf_link = subcadena
+                                print(subcadena)
+                                # pdf_link = div_pdf.a['href']
+                                pdf_izena = pdf_link.split('/')[-1]
+                                self._refs.append({'link': pdf_uria, 'pdf_name': pdf_izena})
                         else:
                             print(metodoa + " " + uria)
                             kodea = erantzuna.status_code
@@ -232,18 +253,29 @@ class eGela:
                             # print(edukia)
                             status = erantzuna.status_code
                             soup2 = BeautifulSoup(edukia, 'html.parser')
-                            div_pdf_elements = soup2.find_all('div', {'class': 'resourceworkaround'})
+                            div_pdf = soup2.find('div', {'class': 'urlworkaround'})
                             # print(div_pdf)
-                            for div in div_pdf_elements:
-                                if "href" in str(div):
-                                    pdf_link = div["href"]
-                            # pdf_link = div_pdf.a['href']
-                            pdf_izena = pdf_link.split('/')[-1]
-                            self._refs.append({'link': pdf_link, 'pdf_name': pdf_izena})
+                            if "href" in str(div_pdf):
+                                print(div_pdf)
+                                div2 = str(div_pdf)
+                                length=5
+                                indice_1=div2.find("href=""")
+                                indice_1=indice_1+length+1
+                                print(indice_1)
+                                indice_2 = div2.index(">h")
+                                indice_2=indice_2-1
+                                print(indice_2)
+                                subcadena = div2[indice_1:indice_2]
+                                print(subcadena)
+                                pdf_link = subcadena
+                                print(subcadena)
+                                # pdf_link = div_pdf.a['href']
+                                pdf_izena = pdf_link.split('/')[-1]
+                                self._refs.append({'link': pdf_link, 'pdf_name': pdf_izena})
 
                         pdf.append(uria)
 
-                progress += (100//kop)
+                progress += (100 // kop)
                 progress_var.set(progress)
                 progress_bar.update()
                 time.sleep(0.1)
