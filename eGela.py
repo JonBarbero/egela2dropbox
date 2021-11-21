@@ -9,7 +9,7 @@ import helper
 
 class eGela:
     _login = 0
-    _cookiea = "MoodleSessionegela=ftvembt2rmeabfurj204s0qf50629403"
+    _cookiea = "MoodleSessionegela=1djgs7b2o4914p8hu84flskk2t128ait"
     _refs = []
     _root = None
 
@@ -52,6 +52,7 @@ class eGela:
         edukia = erantzuna.content
         print("Edukia: ")
         print(edukia)
+        # print(cookiea)
         progress = 33
         progress_var.set(progress)
         progress_bar.update()
@@ -242,7 +243,7 @@ class eGela:
 
                         pdf.append(uria)
 
-                progress += 1.5
+                progress += (100//kop)
                 progress_var.set(progress)
                 progress_bar.update()
                 time.sleep(0.1)

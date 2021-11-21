@@ -256,7 +256,7 @@ newroot.columnconfigure(3, weight=1)
 
 # PDF-zerrendaren etiketa(0,0)   #
 var2 = tk.StringVar()
-var2.set("PDF-ak Web Sistemak ikastaroan")
+var2.set("Kargatutako PDF-ak")
 label2 = tk.Label(newroot, textvariable=var2)
 label2.grid(column=0, row=0, ipadx=5, ipady=5)
 
