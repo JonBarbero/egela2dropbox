@@ -214,6 +214,7 @@ class eGela:
                             pdf_link = pdf_uria.split("mod_resource/content/")[1].split("/")[1].replace("%20", "_")
                             print(pdf_link)
                             pdf_izena = pdf_link.split('/')[-1]
+                            pdf_izena = pdf_izena.replace("%20", "_")
                             self._refs.append({'link': pdf_uria, 'pdf_name': pdf_izena})
 
                         elif 'resource' in uria:
@@ -243,6 +244,7 @@ class eGela:
                                 print(subcadena)
                                 # pdf_link = div_pdf.a['href']
                                 pdf_izena = pdf_link.split('/')[-1]
+                                pdf_izena = pdf_izena.replace("%20", "_")
                                 self._refs.append({'link': pdf_uria, 'pdf_name': pdf_izena})
                         else:
                             print(metodoa + " " + uria)
@@ -271,6 +273,7 @@ class eGela:
                                 print(subcadena)
                                 # pdf_link = div_pdf.a['href']
                                 pdf_izena = pdf_link.split('/')[-1]
+                                pdf_izena = pdf_izena.replace("%20", "_")
                                 self._refs.append({'link': pdf_link, 'pdf_name': pdf_izena})
 
                         pdf.append(uria)
