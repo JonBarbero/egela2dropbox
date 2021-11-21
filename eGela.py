@@ -211,9 +211,7 @@ class eGela:
                             kodea = erantzuna.status_code
                             deskribapena = erantzuna.reason
                             print(str(kodea) + " " + deskribapena)
-                            pdf_link = pdf_uria.split("mod_resource/content/")[1].split("/")[1].replace("%20", "_")
-                            print(pdf_link)
-                            pdf_izena = pdf_link.split('/')[-1]
+                            pdf_izena = pdf_uria.split('/')[-1]
                             pdf_izena = pdf_izena.replace("%20", "_")
                             self._refs.append({'link': pdf_uria, 'pdf_name': pdf_izena})
 
